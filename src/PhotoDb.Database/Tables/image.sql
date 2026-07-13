@@ -1,0 +1,30 @@
+create table [dbo].[image]
+(
+	[id]                    bigint          not null default(next value for [dbo].[image_sequence]),
+    [state]                 smallint        not null,
+    [name]                  nvarchar(256)   not null,
+    [library_id]            int             not null,
+    [file_path]             nvarchar(1024)  not null,
+    [json_data]             json            null,
+    [flag]                  int             not null,
+    [rating]                smallint        not null,
+    [size]                  bigint          not null,
+    [width]                 int             not null,
+    [height]                int             not null,
+    [camera_model]          varchar(100)    null,
+    [lens_model]            varchar(100)    null,
+    [focal_length]          varchar(20)     null,
+    [aperture]              varchar(20)     null,
+    [iso_speed]             varchar(20)     null,
+    [exposure_time]         varchar(20)     null,
+    [shooting_date]         datetime2       null,
+    [indexed_date]          datetime2       null,
+    [hash]                  varbinary(128)  not null,
+    [embedding]             vector(256)     null,
+    [description]              nvarchar(max)   null,
+    [created]               datetime2       not null,
+    [modified]              datetime2       not null, 
+    constraint [pk_image] primary key ([id]), 
+    constraint [fk_image_library] foreign key ([library_id]) references [dbo].[library]([id])
+
+)

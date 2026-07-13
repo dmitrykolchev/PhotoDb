@@ -1,0 +1,32 @@
+{
+  "name": "web-components",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "tsc --build && rollup -c",
+    "clean": "tsc --build --clean"
+  },
+  "keywords": [],
+  "author": "Dmitry Kolchev",
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-terser": "^1.0.0",
+    "@rollup/plugin-typescript": "^12.3.0",
+    "@types/node": "^26.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.62.0",
+    "@typescript-eslint/parser": "^8.62.0",
+    "esbuild": "^0.28.1",
+    "eslint": "^10.5.0",
+    "lit": "^3.3.3",
+    "rollup": "^4.62.2",
+    "rollup-plugin-esbuild": "^6.2.1",
+    "rollup-plugin-lit-css": "^6.0.1",
+    "rst-compiler": "^0.5.9",
+    "ts-loader": "^9.6.2",
+    "ts-node": "^10.9.2",
+    "tslib": "2.8.1",
+    "typescript": "^6.0.3"
+  }
+}

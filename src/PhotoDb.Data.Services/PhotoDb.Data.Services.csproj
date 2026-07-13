@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>PhotoDb.Data</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xobex.CryptoId" Version="1.0.21" />
+    <PackageReference Include="Xobex.CryptoId.AspNetCore" Version="1.0.21" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PhotoDb.Core\PhotoDb.Core.csproj" />
+    <ProjectReference Include="..\PhotoDb.Data\PhotoDb.Data.csproj" />
+  </ItemGroup>
+
+</Project>

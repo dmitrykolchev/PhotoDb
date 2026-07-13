@@ -1,0 +1,236 @@
+:host {
+  display: block;
+}
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+}
+
+.section-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  margin: 16px 12px 6px;
+  font-weight: 600;
+}
+
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.nav-item {
+  height: 30px;
+  box-sizing: border-box;
+  padding: 0 12px;
+  margin: 0 8px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.12s ease, color 0.12s ease;
+  position: relative;
+  color: var(--text-main);
+  font-size: 13px;
+}
+
+.nav-item:hover {
+  background: var(--bg-tertiary);
+}
+
+.nav-item.active {
+  background: var(--bg-tertiary);
+  color: var(--accent);
+  font-weight: 500;
+  border-left: 2px solid var(--accent);
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.nav-item .icon {
+  font-size: 16px;
+  margin-right: 8px;
+  opacity: 0.7;
+}
+
+.nav-item.active .icon {
+  opacity: 1;
+  color: var(--accent);
+}
+
+.nav-item .nav-count {
+  margin-left: auto;
+  font-size: 10px;
+  opacity: 0.55;
+  background: var(--bg-primary);
+  padding: 1px 5px;
+  border-radius: 10px;
+  font-family: var(--font-mono);
+  color: var(--text-main);
+}
+
+.more-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-dim);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  padding: 2px;
+  border-radius: 3px;
+  transition: all 0.1s ease;
+}
+
+.more-btn:hover {
+  background: var(--bg-primary);
+  color: #FFF;
+}
+
+.more-btn span {
+  font-size: 16px;
+}
+
+.nav-item:hover .more-btn {
+  display: flex;
+}
+
+.nav-item:hover .nav-count {
+  display: none;
+}
+
+.nav-item-ops {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: none;
+  background: var(--bg-tertiary);
+  border-radius: 3px;
+  padding: 1px 4px;
+  gap: 3px;
+  border: 1px solid var(--border);
+  z-index: 10;
+}
+
+.nav-item-ops.open {
+  display: flex;
+}
+
+.close-ops-btn {
+  border-left: 1px solid var(--border);
+  padding-left: 4px;
+  margin-left: 2px;
+}
+
+.nav-op-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.1s ease;
+}
+
+.nav-op-btn:hover {
+  color: #FFF;
+}
+
+.nav-op-btn.text-accent:hover {
+  color: var(--accent);
+}
+
+.nav-op-btn.text-red:hover {
+  color: var(--color-red);
+}
+
+.nav-op-btn span {
+  font-size: 15px;
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  max-width: 110px;
+}
+
+.name-edit-input {
+  background: var(--bg-primary);
+  border: 1px solid var(--accent);
+  color: var(--text-main);
+  border-radius: 3px;
+  padding: 1px 4px;
+  font-size: 13px;
+  outline: none;
+  width: 90px;
+  box-sizing: border-box;
+}
+
+.nav-op-btn.disabled,
+.nav-op-btn[disabled] {
+  opacity: 0.25;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.section-header .section-label {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.add-album-header-btn {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 4px;
+  margin-right: 12px;
+  transition: all 0.12s ease;
+}
+
+.add-album-header-btn:hover {
+  background: var(--bg-tertiary);
+  color: #FFF;
+}
+
+.add-album-header-btn span {
+  font-size: 16px;
+}
+
+.empty-nav-state {
+  font-size: 11px;
+  color: var(--text-dim);
+  opacity: 0.6;
+  padding: 8px 12px;
+  margin: 0 8px;
+  font-style: italic;
+}

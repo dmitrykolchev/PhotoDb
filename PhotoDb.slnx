@@ -1,0 +1,54 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+  </Configurations>
+  <Folder Name="/src/" />
+  <Folder Name="/src/AI/">
+    <Project Path="src/Managed.LLama.Cpp/Managed.LLama.Cpp.csproj" Id="9332ba37-85af-4df3-b5f5-eaa5b1700133" />
+    <Project Path="src/PhotoDb.AI.FaceDetection/PhotoDb.AI.FaceDetection.csproj" Id="3ddf80a0-0ee6-40d9-a47a-f4c643564ef7" />
+    <Project Path="src/PhotoDb.AI/PhotoDb.AI.csproj" Id="ad11a57b-107c-4821-bf0c-1e8d6e3235e9" />
+  </Folder>
+  <Folder Name="/src/App/">
+    <Project Path="src/PhotoDb.App/PhotoDb.App.csproj">
+      <BuildDependency Project="src/web-components/web-components.esproj" />
+    </Project>
+    <Project Path="src/web-components/web-components.esproj">
+      <Platform Project="AnyCPU" />
+      <Build />
+      <Deploy Solution="*|x64" />
+      <Deploy Solution="Release|Any CPU" />
+    </Project>
+  </Folder>
+  <Folder Name="/src/Database/">
+    <Project Path="src/PhotoDb.Data.Services/PhotoDb.Data.Services.csproj" Id="32118d5f-1c88-42ba-b960-d80b3a1c2ec0" />
+    <Project Path="src/PhotoDb.Data.Sqlite/PhotoDb.Data.Sqlite.csproj" Id="6c77a788-c01a-4bf5-a386-c56ad8ebe560" />
+    <Project Path="src/PhotoDb.Data.SqlServer/PhotoDb.Data.SqlServer.csproj" Id="75316406-c8fb-4b79-99f2-dd2888eee67d" />
+    <Project Path="src/PhotoDb.Data.Test/PhotoDb.Data.Test.csproj" Id="d051f894-bc25-49a8-b590-cf56d8c67111" />
+    <Project Path="src/PhotoDb.Data/PhotoDb.Data.csproj" Id="606f89c7-2e79-46a9-a870-4af28e1e3020" />
+    <Project Path="src/PhotoDb.Database/PhotoDb.Database.sqlproj" Id="59eeed77-170b-462d-b3a0-b5790fcdf938">
+      <Platform Project="AnyCPU" />
+      <Build Solution="*|x64" />
+      <Build Solution="Release|Any CPU" />
+      <Deploy />
+    </Project>
+  </Folder>
+  <Folder Name="/src/Imaging/">
+    <Project Path="src/LibRawNative/LibRawNative.csproj" />
+    <Project Path="src/LibRawSharp/LibRawSharp.csproj" />
+    <Project Path="src/PhotoDb.Core/PhotoDb.Core.csproj" Id="e6a9f07a-4ae3-4e93-94f2-2b46bb9a2b46" />
+  </Folder>
+  <Folder Name="/src/Prototypes/">
+    <Project Path="src/Proto/PhotoDb.Editor.Components/PhotoDb.Editor.Components.esproj">
+      <Platform Project="AnyCPU" />
+      <Build />
+      <Deploy />
+    </Project>
+    <Project Path="src/Proto/PhotoDb.Editor/PhotoDb.Editor.csproj" Id="8dd99364-febc-4021-a9f8-44373fce092d">
+      <BuildDependency Project="src/Proto/PhotoDb.Editor.Components/PhotoDb.Editor.Components.esproj" />
+    </Project>
+    <Project Path="src/Proto/PhotoDbProto/PhotoDbProto.csproj">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+  </Folder>
+</Solution>

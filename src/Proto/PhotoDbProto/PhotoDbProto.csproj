@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net10.0</TargetFramework>
+		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<Platforms>AnyCPU;x64</Platforms>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Include="bin\x64\Debug\net10.0\win-x64\libraw.dll" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="MetadataExtractor" Version="2.9.3" />
+		<PackageReference Include="Microsoft.Extensions.FileSystemGlobbing" Version="10.0.9" />
+		<PackageReference Include="SkiaSharp" Version="4.148.0" />
+		<PackageReference Include="Spectre.Console" Version="0.57.2" />
+		<PackageReference Include="Spectre.Console.ImageSharp" Version="0.57.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\LibRawSharp\LibRawSharp.csproj" />
+		<ProjectReference Include="..\..\Managed.LLama.Cpp\Managed.LLama.Cpp.csproj" />
+		<ProjectReference Include="..\..\PhotoDb.Core\PhotoDb.Core.csproj" />
+	</ItemGroup>
+
+</Project>

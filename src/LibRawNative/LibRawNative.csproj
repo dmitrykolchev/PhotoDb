@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+		<!-- Подавляет предупреждение о пустой папке lib, если это чисто нативный пакет -->
+		<NoPackageAnalysis>true</NoPackageAnalysis>
+		<IncludeBuildOutput>true</IncludeBuildOutput>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="runtimes\win-x64\native\libraw.dll"
+			  Pack="True"
+			  PackagePath="runtimes\win-x64\native">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+</Project>

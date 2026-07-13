@@ -1,0 +1,55 @@
+:host {
+  display: block;
+  padding: 12px;
+  border-bottom: 1px solid #27272a;
+  background-color: #0f0f11;
+}
+
+.title {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  color: #71717a;
+  margin-bottom: 10px;
+}
+
+.aspect-container {
+  background-color: #18181b;
+  border: 1px solid #27272a;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 4px;
+  cursor: crosshair;
+  margin: 0 auto;
+}
+
+.grid-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.1;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+  background-size: 8px 8px;
+  pointer-events: none;
+}
+
+.bounding-box {
+  position: absolute;
+  border: 1.5px solid #f59e0b;
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+  z-index: 10;
+  border-radius: 2px;
+  pointer-events: none;
+  background-color: rgba(245, 158, 11, 0.05);
+}
+
+#nav-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}

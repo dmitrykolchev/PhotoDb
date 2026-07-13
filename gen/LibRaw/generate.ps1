@@ -1,0 +1,2 @@
+ClangSharpPInvokeGenerator `@libraw.rsp
+

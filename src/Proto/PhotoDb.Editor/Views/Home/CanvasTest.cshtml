@@ -1,0 +1,178 @@
+﻿@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<canvas id="mainCanvas" style="position:relative;display:block;width:640px;height:480px;background-color: #ffffff; background-image: conic-gradient(#cccccc 0.25turn, transparent 0.25turn 0.5turn, #cccccc 0.5turn 0.75turn, transparent 0.75turn); background-size: 20px 20px;">
+</canvas>
+
+
+<script type="module">
+    /** @@type {HTMLCanvasElement} */
+    const canvas = document.getElementById("mainCanvas");
+    // 1. Определяем желаемый размер в CSS-пикселях
+    const displayWidth = 640;
+    const displayHeight = 480;
+
+    // 2. Получаем коэффициент масштабирования экрана (обычно 2 или 3 на Retina)
+    const dpr = window.devicePixelRatio || 1;
+    // 3. Задаем РЕАЛЬНОЕ количество пикселей для отрисовки
+    canvas.width = displayWidth * dpr;
+    canvas.height = displayHeight * dpr;
+    // 4. Ограничиваем визуальный размер на странице через CSS
+    canvas.style.width = displayWidth + "px";
+    canvas.style.height = displayHeight + "px";
+
+    /** @@type {CanvasRenderingContext2D} */
+    const ctx = canvas.getContext('2d');
+    // 2. Configure line styles (optional)
+    ctx.strokeStyle = '#ff0000'; // Line color (Red)
+    ctx.lineWidth = 1;           // Line thickness (5 pixels)
+    ctx.lineCap = 'round';       // Line endings ('butt', 'round', or 'square')
+
+    // 3. Draw the line
+    ctx.beginPath();             // Start a new path
+    ctx.moveTo(0 + 0.5, 0 + 0.5);          // Move the "pen" to starting coordinates (X, Y)
+    ctx.lineTo(640 - 0.5, 480 - 0.5);        // Draw a hidden path to ending coordinates (X, Y)
+    ctx.moveTo(640 - 0.5, 0 + 0.5);          // Move the "pen" to starting coordinates (X, Y)
+    ctx.lineTo(0 + 0.5, 480 - 0.5);        // Draw a hidden path to ending coordinates (X, Y)
+    ctx.stroke();                // Actually render the line on the canvas
+</script>
+
+<script type="module">
+    // 1. Исходные данные: Размеры картинки и 3 планарных буфера (Uint8Array)
+    const width = 512;
+    const height = 512;
+    const numPixels = width * height;
+
+    const rBuffer = new Uint8Array(numPixels);
+    const gBuffer = new Uint8Array(numPixels);
+    const bBuffer = new Uint8Array(numPixels);
+
+    // Демо-заполнение буферов: градиенты для наглядности смеси цветов
+    for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+            const idx = y * width + x;
+            rBuffer[idx] = (x / width) * 255;  // Градиент красного по горизонтали
+            gBuffer[idx] = (y / height) * 255; // Градиент зеленого по вертикали
+            bBuffer[idx] = 128;                // Постоянный синий синий
+        }
+    }
+
+    // 2. Инициализация WebGL2
+    const canvas = document.getElementById('gl-canvas');
+    const gl = canvas.getContext('webgl2');
+    if (!gl) {
+        alert('WebGL2 не поддерживается вашим браузером');
+    }
+
+    // Поворачиваем текстуру по оси Y, чтобы она не была перевернутой вверх ногами
+    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+
+    // 3. Шейдеры (GLSL ES 3.00)
+    const vertexShaderSource = `#version 300 es
+    in vec2 a_position;
+    in vec2 a_texCoord;
+    out vec2 v_texCoord;
+    void main() {
+    gl_Position = vec4(a_position, 0.0, 1.0);
+    v_texCoord = a_texCoord;
+    }`;
+
+    const fragmentShaderSource = `#version 300 es
+    precision highp float;
+    in vec2 v_texCoord;
+    out vec4 outColor;
+    uniform sampler2D u_texR;
+    uniform sampler2D u_texG;
+    uniform sampler2D u_texB;
+    void main() {
+    float r = texture(u_texR, v_texCoord).r;
+    float g = texture(u_texG, v_texCoord).r;
+    float b = texture(u_texB, v_texCoord).r;
+    outColor = vec4(r, g, b, 1.0);
+    }`;
+
+    // Функция компиляции шейдеров
+    function createShader(gl, type, source) {
+        const shader = gl.createShader(type);
+        gl.shaderSource(shader, source);
+        gl.compileShader(shader);
+        if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+            console.error(gl.getShaderInfoLog(shader));
+            gl.deleteShader(shader);
+            return null;
+        }
+        return shader;
+    }
+
+    const vs = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
+    const fs = createShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource);
+
+    const program = gl.createProgram();
+    gl.attachShader(program, vs);
+    gl.attachShader(program, fs);
+    gl.linkProgram(program);
+    gl.useProgram(program);
+
+    // 4. Геометрия: Квадрат (Full-screen quad) на весь экран
+    // Позиции (X, Y) и соответствующие им координаты текстуры (U, V)
+    const vertices = new Float32Array([
+        -1.0, -1.0, 0.0, 0.0,
+        1.0, -1.0, 1.0, 0.0,
+        -1.0, 1.0, 0.0, 1.0,
+        -1.0, 1.0, 0.0, 1.0,
+        1.0, -1.0, 1.0, 0.0,
+        1.0, 1.0, 1.0, 1.0,
+    ]);
+
+    const vao = gl.createVertexArray();
+    gl.bindVertexArray(vao);
+
+    const buffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+    gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+
+    const positionLoc = gl.getAttribLocation(program, 'a_position');
+    gl.enableVertexAttribArray(positionLoc);
+    gl.vertexAttribPointer(positionLoc, 2, gl.FLOAT, false, 16, 0);
+
+    const texCoordLoc = gl.getAttribLocation(program, 'a_texCoord');
+    gl.enableVertexAttribArray(texCoordLoc);
+    gl.vertexAttribPointer(texCoordLoc, 2, gl.FLOAT, false, 16, 8);
+
+    // 5. Создание и загрузка 3-х текстур (R, G, B)
+    function createPlanarTexture(bufferData, textureUnit, uniformName) {
+        const texture = gl.createTexture();
+        gl.activeTexture(gl.TEXTURE0 + textureUnit);
+        gl.bindTexture(gl.TEXTURE_2D, texture);
+
+        // Важно для WebGL2: формат хранения на GPU — gl.R8 (один красный канал),
+        // формат загружаемых данных — gl.RED, тип — gl.UNSIGNED_BYTE
+        gl.texImage2D(
+            gl.TEXTURE_2D, 0, gl.R8, width, height, 0,
+            gl.RED, gl.UNSIGNED_BYTE, bufferData
+        );
+
+        // Настройка фильтрации (ближайший сосед / линейная)
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+
+        // Связываем текстурный юнит с юниформом в шейдере
+        const location = gl.getUniformLocation(program, uniformName);
+        gl.uniform1i(location, textureUnit);
+    }
+
+    // Загружаем каждый буфер в свой текстурный слот (0, 1 и 2)
+    createPlanarTexture(rBuffer, 0, 'u_texR');
+    createPlanarTexture(gBuffer, 1, 'u_texG');
+    createPlanarTexture(bBuffer, 2, 'u_texB');
+
+    // 6. Отрисовка
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    gl.clearColor(0, 0, 0, 1);
+    gl.clear(gl.COLOR_BUFFER_BIT);
+
+    gl.drawArrays(gl.TRIANGLES, 0, 6);
+
+</script>

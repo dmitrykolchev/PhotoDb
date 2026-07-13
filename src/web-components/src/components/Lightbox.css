@@ -1,0 +1,124 @@
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 4, 6, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.lightbox-close-btn {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  cursor: pointer;
+  z-index: 2020;
+}
+
+.lightbox-close-btn:hover {
+  color: #FFF;
+}
+
+.lightbox-close-btn span {
+  font-size: 32px;
+}
+
+.lightbox-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(22, 22, 26, 0.6);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2010;
+  transition: all 0.1s ease;
+}
+
+.lightbox-arrow:hover {
+  background: var(--accent);
+  color: #FFF;
+  border-color: var(--accent);
+}
+
+.lightbox-arrow-left {
+  left: 20px;
+}
+
+.lightbox-arrow-right {
+  right: 20px;
+}
+
+.lightbox-arrow span {
+  font-size: 24px;
+}
+
+.lightbox-container {
+  width: 80%;
+  height: 85%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-img-wrapper {
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.lightbox-img-wrapper img {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+  border: 1px solid var(--border);
+}
+
+.lightbox-caption {
+  margin-top: 12px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.caption-title {
+  color: #FFF;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.caption-meta {
+  color: var(--text-dim);
+  font-size: 11px;
+  font-family: var(--font-mono);
+}
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+}
