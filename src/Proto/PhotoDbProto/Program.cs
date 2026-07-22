@@ -28,13 +28,14 @@ internal class Program
     {
         Console.CancelKeyPress += OnCancelKeyPress;
         Environment.SetEnvironmentVariable("PATH", $"{Environment.GetEnvironmentVariable("PATH")};C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v13.1\\bin\\x64\\");
-        //TestGemma();
-        StartGemmaChat();
+        TestGemma();
+        //StartGemmaChat();
     }
 
     private static void TestGemma()
     {
-        var imagePath = @"D:\Users\dykolchev.DYKBITS\Pictures\canon\Lena\_MG_6762.JPG";
+        //var imagePath = @"D:\Users\dykolchev.DYKBITS\Pictures\canon\Lena\_MG_6762.JPG";
+        var imagePath = @"D:\Users\dykolchev.DYKBITS\Pictures\_MG_1110.jpg";
         var metadata = ExifMetadataExtractor.ReadMetadataCore(imagePath);
         Console.WriteLine(JsonSerializer.Serialize(metadata, _indentedSerializationOptions));
 
@@ -347,8 +348,7 @@ internal class Program
             string promptText;
             if (first)
             {
-                var systemPrompt = $"{SystemPrompt.DefaultSexy}\nСейчас: {DateTime.Now} {TimeZoneInfo.Local}";
-                //var systemPrompt = $"{ImageDescriber.DefaultDescribePrompt}";
+                var systemPrompt = $"{SystemPrompt.Default}\nСейчас: {DateTime.Now} {TimeZoneInfo.Local}";
                 first = false;
                 promptText =
                     "<|turn>system\n<|think|>\n" +

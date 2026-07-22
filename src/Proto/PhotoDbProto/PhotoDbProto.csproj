@@ -15,8 +15,8 @@
 
 	<ItemGroup>
 		<PackageReference Include="MetadataExtractor" Version="2.9.3" />
-		<PackageReference Include="Microsoft.Extensions.FileSystemGlobbing" Version="10.0.9" />
-		<PackageReference Include="SkiaSharp" Version="4.148.0" />
+		<PackageReference Include="Microsoft.Extensions.FileSystemGlobbing" Version="10.0.10" />
+		<PackageReference Include="SkiaSharp" Version="4.150.1" />
 		<PackageReference Include="Spectre.Console" Version="0.57.2" />
 		<PackageReference Include="Spectre.Console.ImageSharp" Version="0.57.2" />
 	</ItemGroup>
